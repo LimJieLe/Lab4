@@ -1,13 +1,4 @@
-# System imports
-import socket
 import time
-from time import sleep
-
-
-# Local imports
-
-#from ..hal import hal_dc_motor as dc_motor
-
 
 from hal import hal_led as led
 from hal import hal_input_switch as switch
