@@ -1,23 +1,9 @@
-# System imports
-import socket
 import time
-from time import sleep
-
-
-# Local imports
-
-#from ..hal import hal_dc_motor as dc_motor
-
 
 from hal import hal_led as led
-from hal import hal_lcd as LCD
-from hal import hal_dc_motor as dc_motor
-from hal import hal_buzzer as buzzer
-from hal import hal_servo as servo
-import version as ver
+from hal import hal_input_switch as switch
 
 def blink_led(delay):
-    # Led Blink
     led.init()
 
     led.set_output(0, 1)
@@ -32,10 +18,16 @@ def blink_led(delay):
     led.set_output(0, 0)
     time.sleep(delay)
 
+def main():
+    switch.init()
+    x = switch.read_slide_switch()
+    if x == 1 :
+        blink_led(200)
+    else :
+        led.set_output(0, 0)
 
-def rotate_servo():
-    servo.init()
-
+if __name__ == "__main__":
+    main()
     for i in range(0, 180, 5):
         servo.set_servo_position(i)
         sleep(0.05)
